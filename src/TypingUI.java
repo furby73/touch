@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -14,15 +15,18 @@ public class TypingUI extends JFrame implements KeyListener {
     private static String text = "";
     private int position = 0;
     private int charCount = 0;
-    private int timeRemaining = 60; // 60 seconds
+    private int timeRemaining;
+    private int elapsedTime = 0;
+    private final int timeToType = 60;
     private Timer timer;
     private TimerTask task;
+    private boolean isWaitingToStart = true;
 
     public TypingUI() {
         super("Touch Typing Practice");
         initializeText();
         createUI();
-        startTimer();
+        restartTest();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(new Dimension(800, 400));
         this.centerFrame();
@@ -33,6 +37,8 @@ public class TypingUI extends JFrame implements KeyListener {
     }
 
     private static void initializeText() {
+        if (!Objects.equals(text, ""))
+            return;
         text = "";
         for (int i = 0; i < numberOfWordsInLine; i++)
             text += TextGenerator.getRandomWord() + " ";
@@ -59,7 +65,7 @@ public class TypingUI extends JFrame implements KeyListener {
         timerDisplay.setFont(new Font("Arial", Font.PLAIN, 18));
         timerDisplay.setForeground(new Color(60, 60, 60));
 
-        wordCountDisplay = new JLabel("Words per minute: 0");
+        wordCountDisplay = new JLabel("Type to start");
         wordCountDisplay.setFont(new Font("Arial", Font.PLAIN, 18));
         wordCountDisplay.setForeground(new Color(60, 60, 60));
 
@@ -87,17 +93,17 @@ public class TypingUI extends JFrame implements KeyListener {
     }
 
     private void startTimer() {
+        timeRemaining = timeToType;
         timer = new Timer();
         task = new TimerTask() {
-            private int elapsedTime = 0;
+
 
             @Override
             public void run() {
                 if (timeRemaining > 0) {
                     timeRemaining--;
                     elapsedTime++;
-                    timerDisplay.setText("Time remaining: " + timeRemaining + "s");
-                    updateWPM(elapsedTime);
+                    displayHeader();
                 } else {
                     timer.cancel();
                     JOptionPane.showMessageDialog(null, "Time's up! You typed " + calculateWPM(elapsedTime) + " words per minute.");
@@ -108,15 +114,13 @@ public class TypingUI extends JFrame implements KeyListener {
     }
 
     private void restartTest() {
-        timer.cancel();
-        timeRemaining = 60;
+        isWaitingToStart = true;
+        if (timer != null)
+            timer.cancel();
         charCount = 0;
         position = 0;
         initializeText();
-        timerDisplay.setText("Time remaining: " + timeRemaining + "s");
-        wordCountDisplay.setText("Words per minute: 0");
-        textDisplay.setText("<html>" + colorText(text, 0, true) + "</html>");
-        startTimer();
+        displayHeader();
         this.requestFocusInWindow();
     }
 
@@ -131,7 +135,7 @@ public class TypingUI extends JFrame implements KeyListener {
         return before + "<span style='background-color:rgb(200, 0, 0); color:white;'>" + current + "</span>" + after;
     }
 
-    private void updateWPM(int elapsedTime) {
+    private void updateWPM() {
         int wpm = calculateWPM(elapsedTime);
         wordCountDisplay.setText("Words per minute: " + wpm);
     }
@@ -143,16 +147,10 @@ public class TypingUI extends JFrame implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        // No action needed here
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        // No action needed here
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
+        if (isWaitingToStart) {
+            isWaitingToStart = false;
+            startTimer();
+        }
         if (position < text.length() && timeRemaining > 0) {
             char typedChar = e.getKeyChar();
             if (typedChar == text.charAt(position)) {
@@ -172,6 +170,16 @@ public class TypingUI extends JFrame implements KeyListener {
         }
     }
 
+    @Override
+    public void keyPressed(KeyEvent e) {
+        // No action needed here
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        // No action needed here
+    }
+
     public static void start() {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -179,6 +187,18 @@ public class TypingUI extends JFrame implements KeyListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void displayHeader() {
+        if (isWaitingToStart) {
+            timerDisplay.setText("Time remaining: " + timeRemaining + "s");
+            wordCountDisplay.setText("Type to start");
+            textDisplay.setText("<html>" + colorText(text, 0, true) + "</html>");
+            return;
+        }
+        timerDisplay.setText("Time remaining: " + timeRemaining + "s");
+        updateWPM();
+
     }
 
     public static void main(String[] args) {

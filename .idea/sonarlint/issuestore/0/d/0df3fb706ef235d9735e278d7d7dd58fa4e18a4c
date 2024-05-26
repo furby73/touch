@@ -1,30 +1,34 @@
 
 d
-java:S11927"GDefine a constant instead of duplicating this literal "<html>" 4 times.(ÉÙ·ù8üˆ¿·ú1
+java:S1192="GDefine a constant instead of duplicating this literal "<html>" 4 times.(ÉÙ·ù8‰‚Ø¶û1
 c
-java:S11928"FDefine a constant instead of duplicating this literal "Arial" 4 times.(°ªº8üˆ¿·ú1
+java:S1192>"FDefine a constant instead of duplicating this literal "Arial" 4 times.(°ªº8‰‚Ø¶û1
 e
-java:S11927"HDefine a constant instead of duplicating this literal "</html>" 4 times.(ÉÙ·ù8üˆ¿·ú1
+java:S1192="HDefine a constant instead of duplicating this literal "</html>" 4 times.(ÉÙ·ù8‰‚Ø¶û1
 s
-java:S1192:"QDefine a constant instead of duplicating this literal "Time remaining: " 3 times.(ÙÊÅ…ùÿÿÿÿ8üˆ¿·ú1
+java:S1192@"QDefine a constant instead of duplicating this literal "Time remaining: " 3 times.(ÙÊÅ…ùÿÿÿÿ8‰‚Ø¶û1
+>
+java:S1643,"Use a StringBuilder instead.(“çşìøÿÿÿÿ8‰‚Ø¶û1
 7
-java:S1220""Move this file to a named package.8üˆ¿·ú1
-v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(«¡€ı8‰¿·ú1
+java:S1220""Move this file to a named package.8‚Ø¶û1
+v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(«¡€ı8É‚Ø¶û1
+>
+java:S1170"!Make this final field static too.(öÒÅ¶8‘Ïî¶û1
 ~
-java:S1450"\Remove the "restartButton" field and declare it as a local variable in the relevant methods.(ßØ“ÿÿÿÿÿ8ùèì·ú1
+java:S1450"\Remove the "restartButton" field and declare it as a local variable in the relevant methods.(ßØ“ÿÿÿÿÿ8Ñ‚Ø¶û1
 o
-java:S1450"SRemove the "task" field and declare it as a local variable in the relevant methods.(Ÿ¾¼u8œ‰¿·ú1
+java:S1450"SRemove the "task" field and declare it as a local variable in the relevant methods.(Ÿ¾¼u8Ñ‚Ø¶û1
 I
-java:S1948"'Make "timer" transient or serializable.(å¡Ê˜ûÿÿÿÿ8œ‰¿·ú1
+java:S1948"'Make "timer" transient or serializable.(å¡Ê˜ûÿÿÿÿ8Ó‚Ø¶û1
 B
-java:S1948"&Make "task" transient or serializable.(Ÿ¾¼u8œ‰¿·ú1
+java:S1948"&Make "task" transient or serializable.(Ÿ¾¼u8Ó‚Ø¶û1
 e
-java:S3252"IUse static access with "javax.swing.WindowConstants" for "EXIT_ON_CLOSE".(ºÀœx8œ‰¿·ú1
+java:S3252"IUse static access with "javax.swing.WindowConstants" for "EXIT_ON_CLOSE".(ºÀœx8Ú‚Ø¶û1
 o
-java:S6201S"RReplace this instanceof check and cast with 'instanceof BorderLayout borderlayout'(ºæø‡8œ‰¿·ú1
+java:S6201Y"RReplace this instanceof check and cast with 'instanceof BorderLayout borderlayout'(ºæø‡8ã‚Ø¶û1
 o
-java:S6201S"RReplace this instanceof check and cast with 'instanceof BorderLayout borderlayout'(ºæø‡8œ‰¿·ú1
+java:S6201Y"RReplace this instanceof check and cast with 'instanceof BorderLayout borderlayout'(ºæø‡8ã‚Ø¶û1
 Y
-java:S2696¡"6Make the enclosing method "static" or remove this set.(“çşìøÿÿÿÿ8œ‰¿·ú1
+java:S2696Ÿ"6Make the enclosing method "static" or remove this set.(“çşìøÿÿÿÿ8ö‚Ø¶û1
 Y
-java:S2696¥"6Make the enclosing method "static" or remove this set.(ïˆ‡Ğùÿÿÿÿ8œ‰¿·ú1
+java:S2696£"6Make the enclosing method "static" or remove this set.(ïˆ‡Ğùÿÿÿÿ8ö‚Ø¶û1
