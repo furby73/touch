@@ -1,0 +1,30 @@
+
+d
+java:S11927"GDefine a constant instead of duplicating this literal "<html>" 4 times.(ÉÙ·ù8üˆ¿·ú1
+c
+java:S11928"FDefine a constant instead of duplicating this literal "Arial" 4 times.(°ªº8üˆ¿·ú1
+e
+java:S11927"HDefine a constant instead of duplicating this literal "</html>" 4 times.(ÉÙ·ù8üˆ¿·ú1
+s
+java:S1192:"QDefine a constant instead of duplicating this literal "Time remaining: " 3 times.(ÙÊÅ…ùÿÿÿÿ8üˆ¿·ú1
+7
+java:S1220""Move this file to a named package.8üˆ¿·ú1
+v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(«¡€ı8‰¿·ú1
+~
+java:S1450"\Remove the "restartButton" field and declare it as a local variable in the relevant methods.(ßØ“ÿÿÿÿÿ8ùèì·ú1
+o
+java:S1450"SRemove the "task" field and declare it as a local variable in the relevant methods.(Ÿ¾¼u8œ‰¿·ú1
+I
+java:S1948"'Make "timer" transient or serializable.(å¡Ê˜ûÿÿÿÿ8œ‰¿·ú1
+B
+java:S1948"&Make "task" transient or serializable.(Ÿ¾¼u8œ‰¿·ú1
+e
+java:S3252"IUse static access with "javax.swing.WindowConstants" for "EXIT_ON_CLOSE".(ºÀœx8œ‰¿·ú1
+o
+java:S6201S"RReplace this instanceof check and cast with 'instanceof BorderLayout borderlayout'(ºæø‡8œ‰¿·ú1
+o
+java:S6201S"RReplace this instanceof check and cast with 'instanceof BorderLayout borderlayout'(ºæø‡8œ‰¿·ú1
+Y
+java:S2696¡"6Make the enclosing method "static" or remove this set.(“çşìøÿÿÿÿ8œ‰¿·ú1
+Y
+java:S2696¥"6Make the enclosing method "static" or remove this set.(ïˆ‡Ğùÿÿÿÿ8œ‰¿·ú1

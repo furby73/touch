@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="touch:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/touch_jar</output-path>
+    <root id="archive" name="touch.jar">
+      <element id="module-output" name="touch" />
+      <element id="library" level="project" name="openjfx" />
+      <element id="library" level="project" name="21-ea+24" />
+      <element id="file-copy" path="$PROJECT_DIR$/file.txt" />
+    </root>
+  </artifact>
+</component>

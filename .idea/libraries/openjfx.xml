@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="openjfx">
+    <CLASSES>
+      <root url="file://$MAVEN_REPOSITORY$/org/openjfx" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
