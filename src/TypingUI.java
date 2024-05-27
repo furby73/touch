@@ -7,9 +7,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class TypingUI extends JFrame implements KeyListener {
+    private final Statistic statistic;
+    private long lastTime;
     private JLabel textDisplay;
     private JLabel timerDisplay;
     private JLabel wordCountDisplay;
+    private JLabel statisticsDisplay;
     private JButton restartButton;
     private static final int numberOfWordsInLine = 13;
     private static String text = "";
@@ -24,6 +27,7 @@ public class TypingUI extends JFrame implements KeyListener {
 
     public TypingUI() {
         super("Touch Typing Practice");
+        statistic = new Statistic();
         initializeText();
         createUI();
         restartTest();
@@ -58,6 +62,8 @@ public class TypingUI extends JFrame implements KeyListener {
 
         JPanel centerPanel = new JPanel(new GridBagLayout());
         centerPanel.setOpaque(false);
+        JPanel centerPanel2 = new JPanel(new GridBagLayout());
+        centerPanel2.setOpaque(false);
         textDisplay = new JLabel("<html>" + colorText(text, 0, true) + "</html>");
         textDisplay.setFont(new Font("Arial", Font.PLAIN, 18));
 
@@ -81,9 +87,16 @@ public class TypingUI extends JFrame implements KeyListener {
         restartButton.addActionListener(e -> restartTest());
         topPanel.add(restartButton);
 
+        statisticsDisplay = new JLabel("Letter statistics will be displayed here.");
+        statisticsDisplay.setFont(new Font("Arial", Font.PLAIN, 8));
+        statisticsDisplay.setForeground(new Color(60, 60, 60));
+        centerPanel2.add(statisticsDisplay, new GridBagConstraints());
+
         this.add(topPanel, BorderLayout.NORTH);
         this.add(centerPanel, BorderLayout.CENTER);
+        this.add(centerPanel2, BorderLayout.SOUTH);
     }
+
 
     private void setPadding(Container container, int padding) {
         if (container.getLayout() instanceof BorderLayout) {
@@ -93,11 +106,10 @@ public class TypingUI extends JFrame implements KeyListener {
     }
 
     private void startTimer() {
+        lastTime = System.currentTimeMillis();
         timeRemaining = timeToType;
         timer = new Timer();
         task = new TimerTask() {
-
-
             @Override
             public void run() {
                 if (timeRemaining > 0) {
@@ -149,11 +161,19 @@ public class TypingUI extends JFrame implements KeyListener {
     public void keyTyped(KeyEvent e) {
         if (isWaitingToStart) {
             isWaitingToStart = false;
+            lastTime = 0;
             startTimer();
         }
         if (position < text.length() && timeRemaining > 0) {
             char typedChar = e.getKeyChar();
+            long currentTime = System.currentTimeMillis();
             if (typedChar == text.charAt(position)) {
+                if (lastTime != 0) {
+                    long timeTaken = currentTime - lastTime;
+                    statistic.updateStats(typedChar, timeTaken);
+                    displayStatistics();
+                }
+                lastTime = currentTime;
                 charCount++;
                 if (typedChar == ' ') {
                     text += TextGenerator.getRandomWord() + " ";
@@ -198,7 +218,19 @@ public class TypingUI extends JFrame implements KeyListener {
         }
         timerDisplay.setText("Time remaining: " + timeRemaining + "s");
         updateWPM();
+    }
 
+    private void displayStatistics() {
+        StringBuilder statsBuilder = new StringBuilder("<html>");
+        for (char letter = 'a'; letter <= 'z'; letter++) {
+            double avgTime = statistic.getStats(letter);
+            if (avgTime > 0) {
+                double wpm = (60.0 / (avgTime / 1000.0)) / 5.0;
+                statsBuilder.append(letter).append(": ").append(String.format("%.1f", wpm)).append(" ");
+            }
+        }
+        statsBuilder.append("</html>");
+        statisticsDisplay.setText(statsBuilder.toString());
     }
 
     public static void main(String[] args) {
