@@ -28,4 +28,9 @@ public class TextGenerator {
         return list_of_words.get((new Random()).nextInt(list_of_words.size()));
     }
 
+    public static String getOptimalWord() {
+        if (list_of_words == null) generate_text();
+        return "optimal";
+    }
+
 }

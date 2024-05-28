@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -12,7 +11,7 @@ public class TypingUI extends JFrame implements KeyListener {
     private JLabel textDisplay;
     private JLabel timerDisplay;
     private JLabel wordCountDisplay;
-    private JLabel statisticsDisplay;
+    private JPanel statisticsDisplay;
     private JButton restartButton;
     private static final int numberOfWordsInLine = 13;
     private static String text = "";
@@ -24,6 +23,7 @@ public class TypingUI extends JFrame implements KeyListener {
     private Timer timer;
     private TimerTask task;
     private boolean isWaitingToStart = true;
+    private boolean isOptimized = false; // Flag to determine if optimized word generation is enabled
 
     public TypingUI() {
         super("Touch Typing Practice");
@@ -32,7 +32,7 @@ public class TypingUI extends JFrame implements KeyListener {
         createUI();
         restartTest();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(new Dimension(800, 400));
+        this.setSize(new Dimension(1000, 400));
         this.centerFrame();
         this.setVisible(true);
         this.setFocusable(true);
@@ -41,8 +41,6 @@ public class TypingUI extends JFrame implements KeyListener {
     }
 
     private static void initializeText() {
-        if (!Objects.equals(text, ""))
-            return;
         text = "";
         for (int i = 0; i < numberOfWordsInLine; i++)
             text += TextGenerator.getRandomWord() + " ";
@@ -62,10 +60,25 @@ public class TypingUI extends JFrame implements KeyListener {
 
         JPanel centerPanel = new JPanel(new GridBagLayout());
         centerPanel.setOpaque(false);
-        JPanel centerPanel2 = new JPanel(new GridBagLayout());
-        centerPanel2.setOpaque(false);
+
+        statisticsDisplay = new JPanel(new GridLayout(2, 26, 5, 5));
+        statisticsDisplay.setFont(new Font("Arial", Font.PLAIN, 12));
+        statisticsDisplay.setForeground(new Color(60, 60, 60));
+
+        GridBagConstraints gbcStats = new GridBagConstraints();
+        gbcStats.gridx = 0;
+        gbcStats.gridy = 0;
+        gbcStats.anchor = GridBagConstraints.NORTH;
+        centerPanel.add(statisticsDisplay, gbcStats);
+
         textDisplay = new JLabel("<html>" + colorText(text, 0, true) + "</html>");
         textDisplay.setFont(new Font("Arial", Font.PLAIN, 18));
+        GridBagConstraints gbcText = new GridBagConstraints();
+        gbcText.gridx = 0;
+        gbcText.gridy = 1;
+        gbcText.anchor = GridBagConstraints.CENTER;
+        gbcText.insets = new Insets(10, 0, 0, 0);
+        centerPanel.add(textDisplay, gbcText);
 
         timerDisplay = new JLabel("Time remaining: " + timeRemaining + "s");
         timerDisplay.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -75,28 +88,30 @@ public class TypingUI extends JFrame implements KeyListener {
         wordCountDisplay.setFont(new Font("Arial", Font.PLAIN, 18));
         wordCountDisplay.setForeground(new Color(60, 60, 60));
 
-        centerPanel.add(textDisplay, new GridBagConstraints());
-
         JPanel topPanel = new JPanel(new GridLayout(1, 3, 10, 10));
         topPanel.setOpaque(false);
         topPanel.add(timerDisplay);
         topPanel.add(wordCountDisplay);
+
+        JToggleButton switchButton = new JToggleButton("Training mode");
+        switchButton.setFont(new Font("Arial", Font.PLAIN, 18));
+        switchButton.addActionListener(e -> toggleOptimized());
+        topPanel.add(switchButton);
 
         restartButton = new JButton("Restart");
         restartButton.setFont(new Font("Arial", Font.PLAIN, 18));
         restartButton.addActionListener(e -> restartTest());
         topPanel.add(restartButton);
 
-        statisticsDisplay = new JLabel("Letter statistics will be displayed here.");
-        statisticsDisplay.setFont(new Font("Arial", Font.PLAIN, 8));
-        statisticsDisplay.setForeground(new Color(60, 60, 60));
-        centerPanel2.add(statisticsDisplay, new GridBagConstraints());
-
         this.add(topPanel, BorderLayout.NORTH);
         this.add(centerPanel, BorderLayout.CENTER);
-        this.add(centerPanel2, BorderLayout.SOUTH);
     }
 
+    private void toggleOptimized() {
+        isOptimized = !isOptimized;
+        initializeTextOptimized();
+        restartTest();
+    }
 
     private void setPadding(Container container, int padding) {
         if (container.getLayout() instanceof BorderLayout) {
@@ -131,9 +146,19 @@ public class TypingUI extends JFrame implements KeyListener {
             timer.cancel();
         charCount = 0;
         position = 0;
-        initializeText();
+        if (isOptimized) {
+            initializeTextOptimized(); // Use optimized text generation
+        } else {
+            initializeText(); // Use random text generation
+        }
         displayHeader();
         this.requestFocusInWindow();
+    }
+
+    private void initializeTextOptimized() {
+        text = "";
+        for (int i = 0; i < numberOfWordsInLine; i++)
+            text += TextGenerator.getOptimalWord() + " ";
     }
 
     private String colorText(String text, int position, boolean isCorrect) {
@@ -162,6 +187,8 @@ public class TypingUI extends JFrame implements KeyListener {
         if (isWaitingToStart) {
             isWaitingToStart = false;
             lastTime = 0;
+            elapsedTime = 0;
+            charCount = 0;
             startTimer();
         }
         if (position < text.length() && timeRemaining > 0) {
@@ -176,7 +203,11 @@ public class TypingUI extends JFrame implements KeyListener {
                 lastTime = currentTime;
                 charCount++;
                 if (typedChar == ' ') {
-                    text += TextGenerator.getRandomWord() + " ";
+                    if (isOptimized) {
+                        text += TextGenerator.getOptimalWord() + " "; // Use optimized word generation
+                    } else {
+                        text += TextGenerator.getRandomWord() + " "; // Use random word generation
+                    }
                 }
                 textDisplay.setText("<html>" + colorText(text, position + 1, true) + "</html>");
                 if (typedChar == ' ') {
@@ -221,17 +252,35 @@ public class TypingUI extends JFrame implements KeyListener {
     }
 
     private void displayStatistics() {
-        StringBuilder statsBuilder = new StringBuilder("<html>");
+        statisticsDisplay.removeAll();
+        statisticsDisplay.setLayout(new GridLayout(2, 26, 5, 10));
+
+        // Create a fixed size for the JLabels
+        Dimension labelSize = new Dimension(25, 10);
+
+        for (char letter = 'a'; letter <= 'z'; letter++) {
+            JLabel letterLabel = new JLabel(String.valueOf(letter), SwingConstants.CENTER);
+            letterLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+            letterLabel.setPreferredSize(labelSize); // Set preferred size
+            statisticsDisplay.add(letterLabel);
+        }
         for (char letter = 'a'; letter <= 'z'; letter++) {
             double avgTime = statistic.getStats(letter);
+            JLabel speedLabel;
             if (avgTime > 0) {
                 double wpm = (60.0 / (avgTime / 1000.0)) / 5.0;
-                statsBuilder.append(letter).append(": ").append(String.format("%.1f", wpm)).append(" ");
+                speedLabel = new JLabel(String.format("%.1f", wpm), SwingConstants.CENTER);
+            } else {
+                speedLabel = new JLabel("-", SwingConstants.CENTER);
             }
+            speedLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+            speedLabel.setPreferredSize(labelSize); // Set preferred size
+            statisticsDisplay.add(speedLabel);
         }
-        statsBuilder.append("</html>");
-        statisticsDisplay.setText(statsBuilder.toString());
+        statisticsDisplay.revalidate();
+        statisticsDisplay.repaint();
     }
+
 
     public static void main(String[] args) {
         start();
