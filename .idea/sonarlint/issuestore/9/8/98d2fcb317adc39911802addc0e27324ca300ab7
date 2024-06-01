@@ -2,11 +2,16 @@
 7
 java:S1220""Move this file to a named package.8û¨¨¥ú1
 z
-java:S3008"XRename this field "list_of_words" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æ«±„ûÿÿÿÿ8’¨Ç¨ú1
+java:S3008"XRename this field "list_of_words" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æ«±„ûÿÿÿÿ8³‘³ğü1
 \
-java:S1118":Add a private constructor to hide the implicit public one.(¼ì«‡ùÿÿÿÿ8’¨Ç¨ú1
-o	java:S100
-"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™°Ö–ùÿÿÿÿ8¨Ç¨ú1
-G	java:S106"+Replace this use of System.out by a logger.(Àûå 8Ÿ¨Ç¨ú1
+java:S1118":Add a private constructor to hide the implicit public one.(¼ì«‡ùÿÿÿÿ8¶‘³ğü1
+o	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™°Ö–ùÿÿÿÿ8¹‘³ğü1
+G	java:S106"+Replace this use of System.out by a logger.(Àûå 8Ç”¦úü1
 ;
-java:S2119"Save and re-use this "Random".(ıó˜›8Ÿ¨Ç¨ú1
+java:S2119"Save and re-use this "Random".(ıó˜›8ö”Àğü1
+t
+java:S3776 "RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(¤¬úàÿÿÿÿÿ8É”¦úü1
+W
+java:S14810"5Remove this unused "hasUntypedLetter" local variable.(ÇÖç¦şÿÿÿÿ8ù¸ª§ı1
+@
+java:S2119K"Save and re-use this "Random".(©Ïì·ûÿÿÿÿ8Û–£„ı1

@@ -28,6 +28,7 @@ public class TypingUI extends JFrame implements KeyListener {
     public TypingUI() {
         super("Touch Typing Practice");
         statistic = new Statistic();
+        TextGenerator.setStatistic(statistic);
         initializeText();
         createUI();
         restartTest();
@@ -88,7 +89,7 @@ public class TypingUI extends JFrame implements KeyListener {
         wordCountDisplay.setFont(new Font("Arial", Font.PLAIN, 18));
         wordCountDisplay.setForeground(new Color(60, 60, 60));
 
-        JPanel topPanel = new JPanel(new GridLayout(1, 3, 10, 10));
+        JPanel topPanel = new JPanel(new GridLayout(1, 4, 10, 10));
         topPanel.setOpaque(false);
         topPanel.add(timerDisplay);
         topPanel.add(wordCountDisplay);
@@ -280,7 +281,6 @@ public class TypingUI extends JFrame implements KeyListener {
         statisticsDisplay.revalidate();
         statisticsDisplay.repaint();
     }
-
 
     public static void main(String[] args) {
         start();

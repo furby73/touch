@@ -1,16 +1,16 @@
 
 d
-java:S1192J"GDefine a constant instead of duplicating this literal "<html>" 4 times.(ÉÙ·ù8š°Öøû1
+java:S1192K"GDefine a constant instead of duplicating this literal "<html>" 4 times.(ÉÙ·ù8š°Öøû1
 c
-java:S1192A"FDefine a constant instead of duplicating this literal "Arial" 8 times.(ÑÀÑ…8š°Öøû1
+java:S1192B"FDefine a constant instead of duplicating this literal "Arial" 8 times.(ÑÀÑ…8š°Öøû1
 e
-java:S1192J"HDefine a constant instead of duplicating this literal "</html>" 4 times.(ÉÙ·ù8š°Öøû1
+java:S1192K"HDefine a constant instead of duplicating this literal "</html>" 4 times.(ÉÙ·ù8š°Öøû1
 s
-java:S1192S"QDefine a constant instead of duplicating this literal "Time remaining: " 3 times.(ÙÊÅ…ùÿÿÿÿ8š°Öøû1
+java:S1192T"QDefine a constant instead of duplicating this literal "Time remaining: " 3 times.(ÙÊÅ…ùÿÿÿÿ8š°Öøû1
 >
-java:S1643."Use a StringBuilder instead.(“çşìøÿÿÿÿ8š°Öøû1
+java:S1643/"Use a StringBuilder instead.(“çşìøÿÿÿÿ8š°Öøû1
 ?
-java:S1643¡"Use a StringBuilder instead.(Åâ°ûÿÿÿÿ8š°Öøû1
+java:S1643¢"Use a StringBuilder instead.(Åâ°ûÿÿÿÿ8µ¸„ı1
 7
 java:S1220""Move this file to a named package.8°Öøû1
 v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(«¡€ı8÷°Öøû1
@@ -27,20 +27,20 @@ java:S1948"'Make "timer" transient or serializable.(å¡Ê˜ûÿÿÿÿ8ü°Öøû1
 B
 java:S1948"&Make "task" transient or serializable.(Ÿ¾¼u8ü°Öøû1
 e
-java:S3252""IUse static access with "javax.swing.WindowConstants" for "EXIT_ON_CLOSE".(ºÀœx8†±Öøû1
+java:S3252#"IUse static access with "javax.swing.WindowConstants" for "EXIT_ON_CLOSE".(ºÀœx8†±Öøû1
 o
-java:S6201u"RReplace this instanceof check and cast with 'instanceof BorderLayout borderlayout'(ºæø‡8™±Öøû1
+java:S6201v"RReplace this instanceof check and cast with 'instanceof BorderLayout borderlayout'(ºæø‡8°µ¸„ı1
 o
-java:S6201u"RReplace this instanceof check and cast with 'instanceof BorderLayout borderlayout'(ºæø‡8™±Öøû1
+java:S6201v"RReplace this instanceof check and cast with 'instanceof BorderLayout borderlayout'(ºæø‡8°µ¸„ı1
 T
-java:S2696Ÿ"6Make the enclosing method "static" or remove this set.(Ì÷¯·8£±Öøû1
+java:S2696 "6Make the enclosing method "static" or remove this set.(Ì÷¯·8°µ¸„ı1
 Y
-java:S2696¡"6Make the enclosing method "static" or remove this set.(Åâ°ûÿÿÿÿ8£±Öøû1
+java:S2696¢"6Make the enclosing method "static" or remove this set.(Åâ°ûÿÿÿÿ8°µ¸„ı1
 p
-java:S3776º"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(÷—8¨±Öøû1
+java:S3776»"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(÷—8°µ¸„ı1
 T
-java:S2696Ï"6Make the enclosing method "static" or remove this set.(ŞÙ›8©±Öøû1
+java:S2696Ğ"6Make the enclosing method "static" or remove this set.(ŞÙ›8°µ¸„ı1
 T
-java:S2696Ñ"6Make the enclosing method "static" or remove this set.(½ç»ç8©±Öøû1
+java:S2696Ò"6Make the enclosing method "static" or remove this set.(½ç»ç8°µ¸„ı1
 Y
-java:S2696Ö"6Make the enclosing method "static" or remove this set.(ïˆ‡Ğùÿÿÿÿ8©±Öøû1
+java:S2696×"6Make the enclosing method "static" or remove this set.(ïˆ‡Ğùÿÿÿÿ8°µ¸„ı1
